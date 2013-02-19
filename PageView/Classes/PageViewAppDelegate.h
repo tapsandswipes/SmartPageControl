@@ -10,13 +10,10 @@
 
 @class PageViewViewController;
 
-@interface PageViewAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    PageViewViewController *viewController;
-}
+@interface PageViewAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet PageViewViewController *viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet PageViewViewController *viewController;
 
 @end
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		A9D2CF770F7954BA00FE7546 /* img2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A9D2CF740F7954BA00FE7546 /* img2.jpg */; };
 		A9D2CF780F7954BA00FE7546 /* img3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A9D2CF750F7954BA00FE7546 /* img3.jpg */; };
 		A9D2CFC40F7958B100FE7546 /* SmartPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D2CFC30F7958B100FE7546 /* SmartPageControl.m */; };
+		A9D56ACF16D1760E00BD22D1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D56ACE16D1760E00BD22D1 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		A9D2CF750F7954BA00FE7546 /* img3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img3.jpg; path = Resources/img3.jpg; sourceTree = "<group>"; };
 		A9D2CFC20F7958B100FE7546 /* SmartPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartPageControl.h; sourceTree = "<group>"; };
 		A9D2CFC30F7958B100FE7546 /* SmartPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartPageControl.m; sourceTree = "<group>"; };
+		A9D56ACE16D1760E00BD22D1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A9D56ACE16D1760E00BD22D1 /* Default-568h@2x.png */,
 				A9D2CF730F7954BA00FE7546 /* img1.jpg */,
 				A9D2CF740F7954BA00FE7546 /* img2.jpg */,
 				A9D2CF750F7954BA00FE7546 /* img3.jpg */,
@@ -151,9 +154,16 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PageView" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +183,7 @@
 				A9D2CF760F7954BA00FE7546 /* img1.jpg in Resources */,
 				A9D2CF770F7954BA00FE7546 /* img2.jpg in Resources */,
 				A9D2CF780F7954BA00FE7546 /* img3.jpg in Resources */,
+				A9D56ACF16D1760E00BD22D1 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +209,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -212,6 +224,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PageView_Prefix.pch;
@@ -224,14 +237,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Antonio Cabezuelo Vivo";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0A68C67-BE93-489D-8E33-CF10635F018E";
-				SDKROOT = iphoneos3.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -239,13 +255,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Antonio Cabezuelo Vivo";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0A68C67-BE93-489D-8E33-CF10635F018E";
-				SDKROOT = iphoneos3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

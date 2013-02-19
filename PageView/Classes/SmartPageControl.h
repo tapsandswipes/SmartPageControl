@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SmartPageControl : UIPageControl {
-	CGFloat startPosition;
-	BOOL dragging;
-	CGFloat pageDistance;
-	NSTimer *timer;
-}
+@interface SmartPageControl : UIPageControl
 
 @end

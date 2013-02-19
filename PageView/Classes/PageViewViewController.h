@@ -10,11 +10,9 @@
 
 @class PageView;
 
-@interface PageViewViewController : UIViewController {
-	PageView *pageView;
-}
+@interface PageViewViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet PageView *pageView;
+@property (nonatomic, strong) IBOutlet PageView *pageView;
 
 @end
 

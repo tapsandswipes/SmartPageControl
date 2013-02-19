@@ -12,21 +12,14 @@
 #define PAGE_CONTORL_HEIGHT 18.0f
 
 @interface PageView ()
-
-@property (nonatomic,retain) UIScrollView *scrollView;
-@property (nonatomic,retain) SmartPageControl *pageControl;
-
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) SmartPageControl *pageControl;
 @end
 
-@interface PageView (ProvateMethods)
+@implementation PageView {
+	BOOL pageControlUsed;
+}
 
-- (void) setup;
-- (void) changePage:(id)sender;
-
-@end
-
-
-@implementation PageView
 
 @synthesize scrollView, pageControl, numberOfPages;
 
@@ -34,6 +27,14 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		[self setup];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
     }
     return self;
 }
@@ -50,21 +51,22 @@
 	CGRect frame = self.frame;
 	CGRect r = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width,	frame.size.height - PAGE_CONTORL_HEIGHT);
 	self.scrollView = [[UIScrollView alloc] initWithFrame:r];
-	scrollView.pagingEnabled = YES;
-	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numberOfPages, scrollView.frame.size.height);
-	scrollView.showsHorizontalScrollIndicator = NO;
-	scrollView.showsVerticalScrollIndicator = NO;
-	scrollView.scrollsToTop = NO;
-	scrollView.delegate = self;
-	[self addSubview:scrollView];
-	[scrollView release];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	self.scrollView.pagingEnabled = YES;
+	self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * self.numberOfPages, scrollView.frame.size.height);
+	self.scrollView.showsHorizontalScrollIndicator = NO;
+	self.scrollView.showsVerticalScrollIndicator = NO;
+	self.scrollView.scrollsToTop = NO;
+	self.scrollView.delegate = self;
+	[self addSubview:self.scrollView];
 	
 	r = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height - PAGE_CONTORL_HEIGHT, frame.size.width,	PAGE_CONTORL_HEIGHT);
 	self.pageControl = [[SmartPageControl alloc] initWithFrame:r];
-	pageControl.numberOfPages = numberOfPages;
-	pageControl.currentPage = 0;
-	[pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
-	[self addSubview:pageControl];
+    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+	self.pageControl.numberOfPages = self.numberOfPages;
+	self.pageControl.currentPage = 0;
+	[self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
+	[self addSubview:self.pageControl];
 }
 
 - (void) drawRect:(CGRect)rect {
@@ -72,23 +74,20 @@
 }
 
 - (void) setNumberOfPages:(NSInteger)theNumberOfPages {
-	if (theNumberOfPages != numberOfPages) {
+	if (theNumberOfPages != self.numberOfPages) {
 		numberOfPages = theNumberOfPages;
-		scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * numberOfPages, scrollView.frame.size.height);
-		pageControl.numberOfPages = numberOfPages;
+		self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numberOfPages, self.scrollView.frame.size.height);
+		self.pageControl.numberOfPages = self.numberOfPages;
 	}
-}
-- (void)dealloc {
-    [super dealloc];
 }
 
 - (void) addView:(UIView *)view forPage:(NSInteger)page {
 	if (nil == view.superview) {
-		CGRect frame = scrollView.frame;
+		CGRect frame = self.scrollView.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         view.frame = frame;
-        [scrollView addSubview:view];
+        [self.scrollView addSubview:view];
 		self.numberOfPages += 1;
 	}
 }
@@ -103,9 +102,9 @@
         return;
     }
     // Switch the indicator when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    pageControl.currentPage = page;
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
 
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
@@ -115,11 +114,13 @@
 
 
 - (void) changePage:(id)sender {
-	int page = pageControl.currentPage;
-	CGRect frame = scrollView.frame;
+	int page = self.pageControl.currentPage;
+	CGRect frame = self.scrollView.frame;
     frame.origin.x = frame.size.width * page;
     frame.origin.y = 0;
-    [scrollView scrollRectToVisible:frame animated:YES];
+    [UIView animateWithDuration:0.34 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.scrollView.contentOffset = frame.origin;
+    } completion:nil];
     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
 }

@@ -11,23 +11,12 @@
 
 @implementation PageViewAppDelegate
 
-@synthesize window;
-@synthesize viewController;
-
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     
-    // Override point for customization after app launch    
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
+    return YES;
 }
-
-
-- (void)dealloc {
-    [viewController release];
-    [window release];
-    [super dealloc];
-}
-
 
 @end
