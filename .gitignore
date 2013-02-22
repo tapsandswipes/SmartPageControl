@@ -3,14 +3,14 @@
 *.swp
 
 # xcode noise
-build/*
+build
 *.pbxuser
 *.mode1v3
 *.mode2v3
 !default.pbxuser
 !default.mode1v3
 !default.mode2v3
-
+xcuserdata
 *.perspective
 *.perspectivev3
 
@@ -23,3 +23,5 @@ build/*
 # osx noise
 .DS_Store
 profile
+
+*.xcworkspace
