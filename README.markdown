@@ -2,7 +2,7 @@
 
 SmartPageControl is a subclass of UIPageControl with some smart functionality. 
 
-![Smart PageControl sample image](https://github.com/tapsandswipes/SmartPageControl/raw/master/Screenshot.jpg)
+![Smart PageControl sample image](Screenshot.jpg)
 
 -  Tap&Hold to move directily to first/last page
 -  Drag over the dots area to move between pages in a fast way
