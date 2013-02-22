@@ -69,10 +69,6 @@
 	[self addSubview:self.pageControl];
 }
 
-- (void) drawRect:(CGRect)rect {
-    // Drawing code
-}
-
 - (void) setNumberOfPages:(NSInteger)theNumberOfPages {
 	if (theNumberOfPages != self.numberOfPages) {
 		numberOfPages = theNumberOfPages;
